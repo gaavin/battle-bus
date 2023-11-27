@@ -3,14 +3,14 @@ import { Map } from "./components/map";
 
 export default function Component() {
   return (
-    <div>
+    <>
       <div>
         <p>root</p>
       </div>
       <div>
         <Map />
       </div>
-    </div>
+    </>
   );
 }
 
