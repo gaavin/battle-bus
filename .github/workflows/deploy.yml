@@ -47,17 +47,15 @@ jobs:
           tar \
             --dereference --hard-dereference \
             -cvf "$RUNNER_TEMP/artifact.tar" \
-            --exclude=.git \
-            --exclude=.github \
           dist/*
+
+      - name: "ls"
+        shell: "sh"
+        run: |
+          "ls"
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
-
-      - name: "console log"
-        shell: "sh"
-        run: |
-          "echo $(pwd)"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
