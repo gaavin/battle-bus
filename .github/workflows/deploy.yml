@@ -52,7 +52,7 @@ jobs:
       - name: "ls"
         shell: "sh"
         run: |
-          "ls"
+          "ls dist"
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
