@@ -1,4 +1,4 @@
-import { render } from "preact";
+import { render } from "preact/compat";
 import { Map } from "./components/map";
 
 export default function Component() {
