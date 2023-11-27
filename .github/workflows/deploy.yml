@@ -36,6 +36,11 @@ jobs:
         run: |
           "pwd"
 
+      - name: "ls"
+        shell: "sh"
+        run: |
+          "ls"
+
       - name: "Archive artifact"
         shell: "sh"
         run: |
