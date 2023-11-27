@@ -31,10 +31,10 @@ jobs:
       - name: "Build"
         run: "npm run build"
 
-      - name: "console log"
+      - name: "pwd"
         shell: "sh"
         run: |
-          "echo $(pwd)"
+          "pwd"
 
       - name: "Archive artifact"
         shell: "sh"
