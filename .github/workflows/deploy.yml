@@ -34,11 +34,11 @@ jobs:
 
       - name: Archive artifact
         run: |
-          tar --dereference --hard-dereference -cvf dist/artifact.tar dist/*
+          tar --dereference --hard-dereference -cvf artifact.tar dist/*
         working-directory: ${{ github.workspace }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: "github-pages"
-          path: dist/artifact.tar
+          path: artifact.tar

@@ -9,7 +9,10 @@ export function Map() {
         const response = await fetch(
           "https://www.ttrack.info/api/timetrack/json"
         );
-        setData(await response.json());
+        const newData = await response.json();
+        if (data !== newData) {
+          setData(newData);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
