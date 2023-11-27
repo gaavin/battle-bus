@@ -11,8 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: lts/iron
           cache: "npm"
@@ -22,7 +21,7 @@ jobs:
           git checkout -b dist
       - run: |
           mkdir temp-dist
-          mv dist/* temp-dist/
+          mv dist/* temp-dist/ || true
           git rm -r dist
           mv temp-dist/* .
           git add -A
@@ -30,7 +29,6 @@ jobs:
       - run: |-
           git config user.name "Automated"
           git config user.email "actions@users.noreply.github.com"
-          git add -A
           timestamp=$(date -u)
           git commit -m "rebuild: ${timestamp}" || exit 0
           git push origin dist
