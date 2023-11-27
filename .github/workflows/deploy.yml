@@ -1,49 +1,45 @@
-name: "Build and Deploy to GitHub Pages"
+name: Build and Deploy to GitHub Pages
+
 on:
   push:
+    branches:
+      - main
 
 permissions:
-  contents: "write"
+  contents: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
   build:
-    name: "Build and deploy the app"
-    runs-on: "ubuntu-latest"
+    name: Build and deploy the app
+    runs-on: ubuntu-latest
     steps:
-      - name: "Checkout"
-        uses: "actions/checkout@v4"
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: "Use Node.js"
-        uses: "actions/setup-node@v3"
+      - name: Use Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: "lts/iron"
-          cache: "npm"
+          node-version: lts/iron
+          cache: npm
 
-      - name: "Install dependencies"
-        run: "npm ci"
+      - name: Install dependencies
+        run: npm ci
 
-      - name: "Build"
-        run: "npm run build"
+      - name: Build
+        run: npm run build
 
       - name: Archive artifact
         run: |
-          "tar --dereference --hard-dereference -cvf artifact.tar dist/*"
+          mkdir -p dist/artifact
+          tar --dereference --hard-dereference -cvf dist/artifact/artifact.tar *
         working-directory: ${{ github.workspace }}
 
-      - name: "Setup Pages"
-        uses: "actions/configure-pages@v3"
-
-      - name: "Upload artifact"
-        uses: "actions/upload-pages-artifact@v2"
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
         with:
-          path: "artifact.tar"
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+          name: my-artifact
+          path: dist/artifact.tar
