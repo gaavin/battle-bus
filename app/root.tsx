@@ -5,7 +5,7 @@ export default function Component() {
   return (
     <>
       <div>
-        <p>root</p>
+        <p>root :3</p>
       </div>
       <div>
         <Map />
