@@ -31,8 +31,10 @@ jobs:
       - name: "Build"
         run: "npm run build"
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
+      - name: "Make artifact directory"
+        shell: "sh"
+        run: |
+          mkdir $RUNNER_TEMP
 
       - name: "Archive artifact"
         shell: "sh"
@@ -44,6 +46,9 @@ jobs:
             --exclude=.git \
             --exclude=.github \
           .
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
