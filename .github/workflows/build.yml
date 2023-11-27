@@ -17,4 +17,4 @@ jobs:
           node-version: lts/iron
           cache: "npm"
       - run: npm ci
-      - run: npm run build --if-present
+      - run: npm run build
