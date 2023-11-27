@@ -36,11 +36,11 @@ jobs:
         run: |
           tar \
             --dereference --hard-dereference \
-            --directory "dist" \
+            --directory "$INPUT_PATH" \
             -cvf "$RUNNER_TEMP/artifact.tar" \
             --exclude=.git \
             --exclude=.github \
-          .
+          dist/*
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
