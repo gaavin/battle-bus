@@ -33,7 +33,7 @@ jobs:
 
       - name: Archive artifact
         run: |
-          tar --dereference --hard-dereference -cvf "artifact.tar" dist/*
+          tar --dereference --hard-dereference -cvf dist/*
         working-directory: ${{ github.workspace }}
 
       - name: "Setup Pages"
