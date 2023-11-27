@@ -31,11 +31,6 @@ jobs:
       - name: "Build"
         run: "npm run build"
 
-      - name: "Make artifact directory"
-        shell: "sh"
-        run: |
-          mkdir $RUNNER_TEMP
-
       - name: "Archive artifact"
         shell: "sh"
         run: |
