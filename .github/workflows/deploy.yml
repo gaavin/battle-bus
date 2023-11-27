@@ -34,8 +34,7 @@ jobs:
 
       - name: Archive artifact
         run: |
-          mkdir -p dist/artifact
-          tar --dereference --hard-dereference -cvf dist/artifact/artifact.tar *
+          tar --dereference --hard-dereference -cvf dist/artifact.tar dist/*
         working-directory: ${{ github.workspace }}
 
       - name: Upload artifact
