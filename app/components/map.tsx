@@ -1,22 +1,27 @@
 import { useEffect, useState } from "preact/hooks";
 
 export function Map() {
-  const [data, setData] = useState<JSON>();
+  const [data, setData] = useState<Record<string, string>>();
 
   useEffect(() => {
     const intervalCall = setInterval(async () => {
-      const newData = await fetch(
-        "https://www.ttrack.info/api/timetrack/json"
-      ).then(async (response) => await response.json());
-
-      if (newData !== data) {
+      try {
+        const response = await fetch(
+          "https://www.ttrack.info/api/timetrack/json"
+        );
+        const newData = await response.json();
         setData(newData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
       }
     }, 30000);
-    return () => {
-      clearInterval(intervalCall);
-    };
+
+    return () => clearInterval(intervalCall);
   }, []);
 
-  return <>{data}</>;
+  return (
+    <div>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </div>
+  );
 }
