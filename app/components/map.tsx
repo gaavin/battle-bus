@@ -4,7 +4,7 @@ export function Map() {
   const [data, setData] = useState<Record<string, string>>();
 
   useEffect(() => {
-    const intervalCall = setInterval(async () => {
+    const fetchData = async () => {
       try {
         const response = await fetch(
           "https://www.ttrack.info/api/timetrack/json"
@@ -16,7 +16,10 @@ export function Map() {
       } catch (error) {
         console.error("Error fetching data:", error);
       }
-    }, 30000);
+    };
+
+    fetchData();
+    const intervalCall = setInterval(fetchData, 7000);
 
     return () => clearInterval(intervalCall);
   }, []);
